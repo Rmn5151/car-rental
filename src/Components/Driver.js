@@ -57,6 +57,7 @@ function Driver() {
     setTotalFair(driver.charges * rentDays);
     setDriver(driver.driverName);
     localStorage.setItem("driver", JSON.stringify(driver));
+    // localStorage.setItem("driver", driver.id);
     setError(true);
   };
 

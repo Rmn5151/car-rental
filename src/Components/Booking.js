@@ -94,7 +94,7 @@ function Booking() {
   useEffect(() => {
     setTotalPrice(charge * Number(days));
   });
-
+  let carId = params.id;
   const getCarDetails = async () => {
     // console.log(params);
     let result = await fetch(`http://localhost:5000/book-car/${params.id}`);
@@ -133,6 +133,7 @@ function Booking() {
       let result = await fetch("http://localhost:5000/book-now", {
         method: "POST",
         body: JSON.stringify({
+          carId,
           carCompany,
           carColor,
           carModel,

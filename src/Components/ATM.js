@@ -36,11 +36,14 @@ const ATMcard = () => {
   const [days, setDays] = useState("");
   const [passangerCapacity, setPassangerCapacity] = useState("");
   const navigate = useNavigate();
+  const [driverID, setDriverID] = useState("");
 
   useEffect(() => {
     const auth = localStorage.getItem("driver");
     const data = JSON.parse(auth);
     console.log(data);
+    setDriverID(data._id);
+    console.log("ID =", data._id);
     setDriverName(data.driverName);
     setDriverMobNo(data.driverMobNo);
     setCharges(data.charges);
@@ -113,6 +116,7 @@ const ATMcard = () => {
           lname,
           email,
           driverImg,
+          driverID,
           driverName,
           driverMobNo,
           charges,
