@@ -22,8 +22,10 @@ function Driver() {
   const navigate = useNavigate();
 
   useEffect(() => {
+   
     const data = JSON.parse(localStorage.getItem("car"));
     const user = JSON.parse(localStorage.getItem("user"));
+    console.log(data.totalPrice)
     setCarAmount(data.totalPrice);
     setGuestCount(data.members);
     setRentDays(data.days);
@@ -47,7 +49,7 @@ function Driver() {
   ]);
 
   const getDrivers = async () => {
-    let result = await fetch("http://localhost:5000/drivers");
+    let result = await fetch("http://localhost:8080/api/drivers/all");
     let data = await result.json();
     setData(data);
     console.log(data);
@@ -88,7 +90,7 @@ function Driver() {
 
   const confirmRide = async () => {
     if (driver) {
-      let result = await fetch("http://localhost:5000/driver-hotel", {
+      let result = await fetch("http://localhost:8080/api/hotels/save", {
         method: "POST",
         body: JSON.stringify({
           hotel,

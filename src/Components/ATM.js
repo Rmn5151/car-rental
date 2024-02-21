@@ -109,7 +109,7 @@ const ATMcard = () => {
     if (cardNo.length === 16 && cardHolder && expDate && cvv) {
       alert("Car Booked Successfully !!!");
 
-      let result = await fetch("http://localhost:5000/finalConfirm", {
+      let result = await fetch("http://localhost:8080/api/atms/save", {
         method: "POST",
         body: JSON.stringify({
           fname,
@@ -144,7 +144,7 @@ const ATMcard = () => {
         }),
         headers: {
           "Content-Type": "application/json",
-          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+     //     authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
       });
       result = result.json();

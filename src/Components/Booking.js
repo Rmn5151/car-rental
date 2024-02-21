@@ -95,9 +95,10 @@ function Booking() {
     setTotalPrice(charge * Number(days));
   });
   let carId = params.id;
+
   const getCarDetails = async () => {
     // console.log(params);
-    let result = await fetch(`http://localhost:5000/book-car/${params.id}`);
+    let result = await fetch(`http://localhost:8080/api/cars/car/${params.id}`);
     result = await result.json();
     console.warn(result);
     setCarImg(result.carImg);
@@ -113,6 +114,7 @@ function Booking() {
     setPassangerCapacity(result.passangerCapacity - 1);
     setCharge(result.charge);
   };
+  console.log(carId+"carId is");
   const collectData = async () => {
     if (
       !pickUpLocation ||
@@ -130,7 +132,8 @@ function Booking() {
       alert("Enter valid credentials");
       return;
     } else {
-      let result = await fetch("http://localhost:5000/book-now", {
+   
+      let result = await fetch(`http://localhost:8080/api/bookings/save`, {
         method: "POST",
         body: JSON.stringify({
           carId,

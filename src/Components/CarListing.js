@@ -14,9 +14,9 @@ function CarListing() {
   }, []);
 
   const getCar = async () => {
-    let result = await fetch("http://localhost:5000/cars", {
+    let result = await fetch("http://localhost:8080/api/cars/all", {
       headers: {
-        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        authorization: `bearer ${JSON.parse(localStorage.getItem("auth"))}`,
       },
     });
     let data = await result.json();
@@ -83,7 +83,7 @@ function CarListing() {
               </ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Button variant="danger" onClick={() => bookMyRide(item._id)}>
+              <Button variant="danger" onClick={() => bookMyRide(item.id)}>
                 Book Now ( {item.carCompany} - {item.carModel} )
               </Button>{" "}
             </Card.Body>

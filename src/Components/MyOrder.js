@@ -9,16 +9,15 @@ function MyOrder() {
   useEffect(() => {
     getTicket();
   }, []);
-
   const getTicket = async () => {
-    const result = await fetch(
-      `http://localhost:5000/ticket-details/${params.email}`
-    );
+    if (!params.email) {
+      return; // Return early if email parameter is not available yet
+    }
+  
+    const result = await fetch(`http://localhost:8080/api/atms/email/${params.email}`);
     const data = await result.json();
     console.log("FINAL TICKET", data);
     setTicket(data);
-
-    console.log(ticket);
   };
 
   return (
@@ -56,6 +55,7 @@ function MyOrder() {
                   <img style={{ width: "150px" }} src={book.carImg} alt="" />
                 </td>
                 <td>{book.charges.toLocaleString("en-IN")}</td>
+                
                 <td>{book.pickUpLocation}</td>
                 <td>{book.pickUpDate}</td>
                 <td>{book.pickUpTime}</td>
@@ -89,5 +89,4 @@ function MyOrder() {
     </div>
   );
 }
-
 export default MyOrder;

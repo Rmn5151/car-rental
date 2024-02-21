@@ -35,7 +35,7 @@ function SignUp() {
       alert("Enter valid credentials");
       return;
     } else {
-      let result = await fetch("http://localhost:5000/register", {
+      let result = await fetch("http://localhost:8080/api/users/save", {
         method: "POST",
         body: JSON.stringify({
           fname,

@@ -22,7 +22,7 @@ function Login() {
 
   const loginHandle = async () => {
     // console.log("Email", email, "Password", password);
-    let result = await fetch("http://localhost:5000/login", {
+    let result = await fetch("http://localhost:8080/api/users/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -30,10 +30,11 @@ function Login() {
       },
     });
     result = await result.json();
-    // console.log(result);
-    if (result.auth) {
+    console.log(result);
+    if (result) {
       localStorage.setItem("user", JSON.stringify(result.user));
       localStorage.setItem("token", JSON.stringify(result.auth));
+    //   console.info(token);console.info(user);
       alert(`Welcome to BookMyCar.. .`);
       navigate("/");
     } else {
